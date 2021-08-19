@@ -10,7 +10,7 @@ initializeIcons();
 
 let isOfficeInitialized = false;
 
-const title = "Viz LAb Task Pane Add-in";
+const title = "Code Lab Task Pane Add-in";
 
 const render = (Component) => {
   ReactDOM.render(

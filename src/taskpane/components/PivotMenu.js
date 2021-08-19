@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Label } from "office-ui-fabric-react/lib/Label";
 import { Pivot, PivotItem } from "office-ui-fabric-react/lib/Pivot";
 import User from "./User/index";
-import CreateChart from './Create/index'
+import CodeEditor from './Code/index'
 import ViewChart from './View/index'
 import HomeHelpPanel from "./HelpPanels/UserHelp";
 import CreateHelpPanel from "./HelpPanels/CreateHelp";
@@ -38,26 +38,26 @@ export default function PivotMenu() {
         </PivotItem>
         <PivotItem
           itemKey="1"
-          headerText="Create"
+          headerText="Code"
           headerButtonProps={{
             disabled: !loggedIn
           }}
         >
           <div className="pivot-head">
-            <Label>Create Chart</Label>
+            <Label>Edit Code</Label>
             <CreateHelpPanel />
           </div>
-          <CreateChart />
+          <CodeEditor />
         </PivotItem>
         <PivotItem
           itemKey="2"
-          headerText="View"
+          headerText="Saved"
           headerButtonProps={{
             disabled: !loggedIn
           }}
         >
           <div className="pivot-head">
-            <Label>View Chart</Label>
+            <Label>Saved Code</Label>
           </div>
           <ViewChart />
         </PivotItem>

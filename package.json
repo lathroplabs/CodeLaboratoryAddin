@@ -9,7 +9,7 @@
   "config": {
     "app_to_debug": "excel",
     "app_type_to_debug": "desktop",
-    "dev_server_port": 3002
+    "dev_server_port": 3004
   },
   "engines": {
     "node": ">=14 <15",
@@ -35,11 +35,13 @@
   },
   "dependencies": {
     "@fluentui/react": "^8.14.8",
+    "ace-builds": "^1.4.12",
     "core-js": "^3.9.1",
     "es6-promise": "^4.2.8",
     "firebase": "^8.6.1",
     "office-ui-fabric-react": "^7.170.1",
     "react": "^16.8.2",
+    "react-ace": "^9.4.3",
     "react-dom": "^16.10.2",
     "regenerator-runtime": "^0.13.7"
   },
