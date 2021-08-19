@@ -18,27 +18,27 @@ export const getAuth = async (uid) => {
   }
 }
 
-export const writeCodeToFirestore = async (codeMeta, setCodeMeta, setModelSaved, setShowError, setErrorMsg) => {
+export const writeCodeToFirestore = async (codeObj, setCodeObj, setCodeSaved, setShowError, setErrorMsg) => {
   firebase.auth().onAuthStateChanged(async usr => {
     const user = await getAuth(usr.uid)
     const document = firestoreDb.collection(`teams/${user.teamId}/code`).doc();
     const documentUuid = document.id;
     docRef = await document
       .set({
-        ...codeMeta,
+        ...codeObj,
         id: documentUuid
       })
       .then(() => {
-        setCodeMeta({
-          ...modelMeta,
+        setCodeObj({
+          ...codeObj,
           id: documentUuid
         });
-        save_model_json(documentUuid, [])
-        setModelSaved(true)
+        //setModelSaved(true)
       })
       .catch(error => {
-        setErrorMsg(`There was an error saving the code: ${error} `);
-        setShowError(true);
+        //setErrorMsg(`There was an error saving the code: ${error} `);
+        //setShowError(true);
+        console.log('Error', error)
       });
   });
 };
