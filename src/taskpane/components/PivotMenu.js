@@ -3,7 +3,7 @@ import { Label } from "office-ui-fabric-react/lib/Label";
 import { Pivot, PivotItem } from "office-ui-fabric-react/lib/Pivot";
 import User from "./User/index";
 import CodeEditor from './Code/index'
-import SelectSavedCode from './Select/index'
+import SelectCode from './Select/index'
 import HomeHelpPanel from "./HelpPanels/UserHelp";
 import CreateHelpPanel from "./HelpPanels/CreateHelp";
 import firebase from "firebase";
@@ -59,7 +59,7 @@ export default function PivotMenu() {
           <div className="pivot-head">
             <Label>Select Saved Code</Label>
           </div>
-          <SelectSavedCode />
+          <SelectCode />
         </PivotItem>
       </Pivot>
     </div>
