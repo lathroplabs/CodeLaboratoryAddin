@@ -9,7 +9,7 @@ import CodeContext from '../../code/CodeContext';
 
 
 export default function Editor(props) {
-  const { code, setCode } = useContext(CodeContext);
+  const { codeString, setCodeString } = useContext(CodeContext);
 
     return (
       <>
@@ -23,7 +23,7 @@ export default function Editor(props) {
       </div>
       <div id="editor">
         <AceEditor
-          value={code}
+          value={codeString}
           mode="python"
           theme="github"
           name="python_editor"
@@ -45,10 +45,10 @@ export default function Editor(props) {
     )
 
   function onChange(newValue) {
-    setCode(newValue) 
+    setCodeString(newValue) 
   }
   
   function getCode() {
-    console.log("code", code);
+    console.log("code", codeString);
   }
 }
