@@ -7,7 +7,7 @@ import { mergeStyles } from "office-ui-fabric-react/lib/Styling";
 import { Text } from "office-ui-fabric-react/lib/Text";
 
 import { readSavedCodeFromFirestore } from "../../../firebase/firebaseRepository";
-import ModelMetaContext from "../../models/ModelMetaContext";
+//import ModelMetaContext from "../../models/ModelMetaContext";
 
 const exampleChildClass = mergeStyles({
   display: "block",

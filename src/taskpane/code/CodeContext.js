@@ -4,7 +4,7 @@ const CodeContext = createContext();
 export default CodeContext;
 
 export function CodeProvider({ children }) {
-  const [codeString, setCodeString] = useState(null);
+  const [codeObj, setCodeObj] = useState({codeString: ''});
 
-  return <CodeContext.Provider value={{ codeString, setCodeString }}>{children}</CodeContext.Provider>;
+  return <CodeContext.Provider value={{ codeObj, setCodeObj }}>{children}</CodeContext.Provider>;
 }

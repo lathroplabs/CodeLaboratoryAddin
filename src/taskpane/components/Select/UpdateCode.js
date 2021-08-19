@@ -3,7 +3,7 @@ import { PrimaryButton, DefaultButton, TextField, MessageBar, MessageBarType } f
 import { Dialog, DialogType, DialogFooter } from "office-ui-fabric-react/lib/Dialog";
 import { IconButton } from "office-ui-fabric-react/lib/Button";
 import { updateModel, deleteModelFirebase } from "../../../firebase/firebaseRepository";
-import ModelMetaContext from "../../models/ModelMetaContext";
+//import ModelMetaContext from "../../models/ModelMetaContext";
 
 export default function UpdateModel() {
   const { modelMeta, setModelMeta } = useContext(ModelMetaContext);
