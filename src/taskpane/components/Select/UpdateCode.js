@@ -3,10 +3,10 @@ import { PrimaryButton, DefaultButton, TextField, MessageBar, MessageBarType } f
 import { Dialog, DialogType, DialogFooter } from "office-ui-fabric-react/lib/Dialog";
 import { IconButton } from "office-ui-fabric-react/lib/Button";
 import { updateModel, deleteModelFirebase } from "../../../firebase/firebaseRepository";
-//import ModelMetaContext from "../../models/ModelMetaContext";
+import CodeContext from '../../code/CodeContext';
 
 export default function UpdateModel() {
-  const { modelMeta, setModelMeta } = useContext(ModelMetaContext);
+  const { codeObj, setCodeObj } = useContext(CodeContext);
   const [writeToDB, setWriteToDB] = useState(false);
   const [editing, setEditing] = useState(false);
   const [modelNameError, setModelNameError] = useState(false);
@@ -24,22 +24,22 @@ export default function UpdateModel() {
 
   useEffect(() => {
     if (writeToDB) {
-      updateModel(modelMeta["id"], modelMeta, setModelSaved, setShowError, setErrorMsg).then(() => setWriteToDB(false));
+      updateModel(codeObj["id"], codeObj, setModelSaved, setShowError, setErrorMsg).then(() => setWriteToDB(false));
     }
   }, [writeToDB]);
 
   const deleteDialogContentProps = {
     type: DialogType.normal,
-    title: "Delete Model",
+    title: "Delete Code",
     closeButtonAriaLabel: "Close",
-    subText: "Do you want to delete the selected model?"
+    subText: "Do you want to delete the selected code?"
   };
 
   const clearDialogContentProps = {
     type: DialogType.normal,
-    title: "Clear the current Model",
+    title: "Clear the current Code",
     closeButtonAriaLabel: "Close",
-    subText: "Do you want to clear the current model from memory and delete all associated worksheets?"
+    subText: "Do you want to clear the current code from memory?"
   };
   
   const modalProps = React.useMemo(
@@ -54,15 +54,15 @@ export default function UpdateModel() {
   return (
     <div className="centered">
 
-      {modelMeta && (
+      {codeObj && (
         <>
           <div id="current-model-name">
-            <b>Active Model:</b> {modelMeta ? `${modelMeta.name}` : "No active Model"}
+            <b>Active Code:</b> {codeObj ? `${codeObj.name}` : "No active COde"}
           </div>
           <div className="update-model-buttons">
-            <IconButton iconProps={clearIcon} title="Clear Model" ariaLabel="Edit" onClick={clearConfirm} />
-            <IconButton iconProps={editIcon} title="Edit Model" ariaLabel="Edit" onClick={editModel} />
-            <IconButton iconProps={deleteIcon} title="Delete Model" ariaLabel="Delete" onClick={deleteConfirm} />
+            <IconButton iconProps={clearIcon} title="Clear Code" ariaLabel="Edit" onClick={clearConfirm} />
+            <IconButton iconProps={editIcon} title="Edit Code" ariaLabel="Edit" onClick={editCode} />
+            <IconButton iconProps={deleteIcon} title="Delete Code" ariaLabel="Delete" onClick={deleteConfirm} />
           </div>
           <div>
             {modelSaved && (
@@ -101,15 +101,15 @@ export default function UpdateModel() {
               Please enter a description for the model.
             </MessageBar>
           )}
-          <TextField label="Model Name" id="name-input" defaultValue={modelMeta["name"]} />
+          <TextField label="Code Name" id="name-input" defaultValue={codeObj["name"]} />
           <TextField
-            label="Model Description"
+            label="Code Description"
             id="description-input"
             multiline
-            defaultValue={modelMeta["description"]}
+            defaultValue={codeObj["description"]}
           />
           <br></br>
-          <PrimaryButton text="Save" onClick={saveModel} />
+          <PrimaryButton text="Save" onClick={saveCode} />
         </div>
       )}
       {showError && (
@@ -127,23 +127,23 @@ export default function UpdateModel() {
       )}
       <Dialog
         hidden={hideDeleteDialog}
-        onDismiss={deleteModel}
+        onDismiss={deleteCode}
         dialogContentProps={deleteDialogContentProps}
         modalProps={modalProps}
       >
         <DialogFooter>
-          <PrimaryButton onClick={deleteModel} text="Delete" />
+          <PrimaryButton onClick={deleteCode} text="Delete" />
           <DefaultButton onClick={() => setHideDeleteDialog(true)} text="Cancel" />
         </DialogFooter>
       </Dialog>
       <Dialog
         hidden={hideClearDialog}
-        onDismiss={clearModel}
+        onDismiss={clearCode}
         dialogContentProps={clearDialogContentProps}
         modalProps={modalProps}
       >
         <DialogFooter>
-          <PrimaryButton onClick={clearModel} text="Clear" />
+          <PrimaryButton onClick={clearCode} text="Clear" />
           <DefaultButton onClick={() => setHideClearDialog(true)} text="Cancel" />
         </DialogFooter>
       </Dialog>
@@ -154,42 +154,32 @@ export default function UpdateModel() {
     setHideClearDialog(false);
   }
 
-  async function clearModel() {
-    await Excel.run(async context => {
-      context.workbook.worksheets.getItemOrNullObject("InputData").delete();
-      context.workbook.worksheets.getItemOrNullObject("ModelSummary").delete();
-      context.workbook.worksheets.getItemOrNullObject("ModelMetadata").delete();
-      context.workbook.worksheets.getItemOrNullObject("TrainingData").delete();
-      context.workbook.worksheets.getItemOrNullObject("PredictionData").delete();
-      context.workbook.worksheets.getItemOrNullObject("ConfusionMatrix").delete();
-      context.workbook.worksheets.getItemOrNullObject("DataSummary").delete();
-      setModelMeta(null);
-      setHideClearDialog(true);
-      await context.sync();
-      const currentModelName = document.getElementById("current-model-name");
-      currentModelName.innerHTML = "Active Model: No Model Loaded";
-    });
+  function clearCode() {
+    setCodeObj({});
+    setHideClearDialog(true);
+    const currentModelName = document.getElementById("current-model-name");
+    currentModelName.innerHTML = "Active Code: No Code Loaded";
   }
 
-  function editModel() {
+  function editCode() {
     setEditing(true);
   }
 
-  function saveModel() {
+  function saveCode() {
     try {
-      const model_name = document.getElementById("name-input").value;
-      if (model_name.length < 1) {
+      const code_name = document.getElementById("name-input").value;
+      if (code_name.length < 1) {
         setModelNameError(true);
         return;
       }
-      const model_description = document.getElementById("description-input").value;
-      if (model_description.length < 1) {
+      const code_description = document.getElementById("description-input").value;
+      if (code_description.length < 1) {
         setModelDescriptionError(true);
         return;
       }
 
-      setModelMeta({
-        ...modelMeta,
+      setCodeObj({
+        ...codeObj,
         name: model_name,
         description: model_description
       });
@@ -206,7 +196,7 @@ export default function UpdateModel() {
     setHideDeleteDialog(false);
   }
 
-  function deleteModel() {
+  function deleteCode() {
     try {
       const refId = modelMeta["id"];
       setModelMeta({});
@@ -214,7 +204,7 @@ export default function UpdateModel() {
       deleteModelFirebase(refId);
     } catch (error) {
       setShowError(true);
-      setErrorMsg("Error deleting model: " + err);
+      setErrorMsg("Error deleting code: " + err);
     }
   }
 }

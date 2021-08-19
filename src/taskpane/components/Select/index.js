@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import CodeChoiceGroup from "./CodeSelection";
 import UpdateModel from "./UpdateCode";
-//import ModelMetaContext from "../../models/ModelMetaContext";
+import CodeContext from '../../code/CodeContext';
 
 export default function SelectCode() {
-  const { modelMeta } = useContext(ModelMetaContext);
+  const { codeObj, setCodeObj } = useContext(CodeContext);
   return (
     <div className="centered">
-      <UpdateModel modelMeta={modelMeta} />
+      <UpdateModel codeObj={codeObj} />
       <hr className="rounded"></hr>
       <CodeChoiceGroup />
     </div>

@@ -5,9 +5,8 @@ import { MarqueeSelection } from "office-ui-fabric-react/lib/MarqueeSelection";
 import { Fabric } from "office-ui-fabric-react/lib/Fabric";
 import { mergeStyles } from "office-ui-fabric-react/lib/Styling";
 import { Text } from "office-ui-fabric-react/lib/Text";
-
 import { readSavedCodeFromFirestore } from "../../../firebase/firebaseRepository";
-//import ModelMetaContext from "../../models/ModelMetaContext";
+import CodeContext from '../../code/CodeContext';
 
 const exampleChildClass = mergeStyles({
   display: "block",
@@ -15,7 +14,7 @@ const exampleChildClass = mergeStyles({
 });
 
 export default function SavedCodeList() {
-  //const { modelMeta, setModelMeta } = useContext(ModelMetaContext);
+  const { codeObj, setCodeObj } = useContext(CodeContext);
   const [items, setItems] = useState([]);
   const [selectionDetails, setSelectionDetails] = useState(null);
 
@@ -31,7 +30,7 @@ export default function SavedCodeList() {
           const selectedCode = selection.getSelection()[0];
           selectmsg.style.display = "none";
           // Model processing
-          //setModelMeta(selectedModel);
+          setCodeObj(selectedCode);
           setSelectionDetails("Code selected: " + selectedCode.name);
           return;
         default:
@@ -61,7 +60,7 @@ export default function SavedCodeList() {
       setItems(code_list);
     };
     fetchCode();
-  }, [modelMeta]);
+  }, [codeObj]);
 
   return (
     <Fabric>
