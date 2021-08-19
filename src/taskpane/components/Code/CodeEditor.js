@@ -16,6 +16,11 @@ export default function Editor(props) {
       <div className="centered">
         <PrimaryButton onClick={() => getCode()}>Save Code</PrimaryButton>
       </div>
+      <div className="centered" style={{ display: "none" }}>
+        <TextField label="Code Name" id="name-input" />
+        <TextField label="Code Description" id="description-input" multiline />
+        <PrimaryButton text="Save" onClick={getCode} allowDisabledFocus disabled={false} />
+      </div>
       <div id="editor">
         <AceEditor
           value={code}
@@ -43,13 +48,7 @@ export default function Editor(props) {
     setCode(newValue) 
   }
   
-  function onLoad() {
-    setValue={code}
-  }
-  
   function getCode() {
-    //var editor = ace.edit("editor");
-    //var code = editor.getSession().getValue();
     console.log("code", code);
   }
 }
