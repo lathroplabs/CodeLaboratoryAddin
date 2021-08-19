@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import { UserProvider } from "../users/UserContext";
 import { AuthProvider } from "../users/AuthContext";
-import { ChartFigProvider } from '../chartFigs/ChartFigContext'
+import { CodeProvider } from '../code/CodeContext'
 
 import PivotMenu from "./PivotMenu";
 
@@ -11,12 +11,12 @@ export default function App() {
   return (
     <UserProvider>
       <AuthProvider>
-        <ChartFigProvider>
+        <CodeProvider>
           <div>
             <Header logo="/assets/viztext.png" title="" message=" " />
             <PivotMenu />
           </div>
-        </ChartFigProvider>
+        </CodeProvider>
       </AuthProvider>
     </UserProvider>
   );
