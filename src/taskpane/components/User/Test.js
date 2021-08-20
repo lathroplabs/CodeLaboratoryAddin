@@ -11,8 +11,7 @@ export default function TestButton() {
   )
 
   async function runTest() {
-    const test_lr = 0.0000000023456
-    console.log('test lr', test_lr.toPrecision(3))
+    window.input_data = [1, 2, 3];
   }
 }
 

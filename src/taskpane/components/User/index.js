@@ -10,7 +10,7 @@ export default function User({ setLoggedIn }) {
       <SignIn setLoggedIn={setLoggedIn} />
       <hr className="rounded"></hr>
       <Subscription />
-      {/*<TestButton />*/}
+      <TestButton />
     </div>
   );
 }
