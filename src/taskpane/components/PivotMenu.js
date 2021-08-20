@@ -8,6 +8,7 @@ import HomeHelpPanel from "./HelpPanels/UserHelp";
 import CreateHelpPanel from "./HelpPanels/CreateHelp";
 import firebase from "firebase";
 import "firebase/auth";
+import Iframe from 'react-iframe'
 
 export default function PivotMenu() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -60,6 +61,24 @@ export default function PivotMenu() {
             <Label>Select Saved Code</Label>
           </div>
           <SelectCode />
+        </PivotItem>
+        <PivotItem
+          itemKey="3"
+          headerText="Notebook"
+          headerButtonProps={{
+            disabled: !loggedIn
+          }}
+        >
+          <div className="pivot-head">
+            <Label>Notebook</Label>
+          </div>
+          <Iframe url="https://jupyterlite.readthedocs.io/en/latest/_static/lab/index.html"
+            width="650px"
+            height="450px"
+            id="myId"
+            className="myClassname"
+            display="initial"
+            position="relative"/>
         </PivotItem>
       </Pivot>
     </div>

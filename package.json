@@ -43,7 +43,9 @@
     "react": "^16.8.2",
     "react-ace": "^9.4.3",
     "react-dom": "^16.10.2",
-    "regenerator-runtime": "^0.13.7"
+    "react-iframe": "^1.8.0",
+    "regenerator-runtime": "^0.13.7",
+    "save": "^2.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
