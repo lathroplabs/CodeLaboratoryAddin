@@ -12,7 +12,6 @@ function loadInputData() {
   window.frames['repl'].window.input_data = [1,2,3]
 }
 
-
 export default function Repl() {
   return (
       <div>
