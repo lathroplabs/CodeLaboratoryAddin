@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Label } from "office-ui-fabric-react/lib/Label";
-import { Pivot, PivotItem } from "office-ui-fabric-react/lib/Pivot";
+import { Label, Pivot, PivotItem } from '@fluentui/react';
 import User from "./User/index";
 import CodeEditor from './Code/index'
 import SelectCode from './Select/index'
@@ -65,8 +64,8 @@ export default function PivotMenu() {
         </PivotItem>
         <PivotItem
           itemKey="3"
-          headerText="repl"
-          headersOnly="true"
+          headerText="Repl"
+          alwaysRender="false"
           headerButtonProps={{
             disabled: !loggedIn
           }}

@@ -1313,7 +1313,7 @@
     "@fluentui/set-version" "^8.1.4"
     "tslib" "^2.1.0"
 
-"@fluentui/react@^8.14.8":
+"@fluentui/react@^8.29.0":
   "integrity" "sha512-LLSXLyUEwM4agStyLH1NGEUhDLk2U8g82+1A84R+4gD1J2DsKgvGi61AnpGEMBD4sLb3yfS2chN/JMM4FW5cjw=="
   "resolved" "https://registry.npmjs.org/@fluentui/react/-/react-8.29.0.tgz"
   "version" "8.29.0"
