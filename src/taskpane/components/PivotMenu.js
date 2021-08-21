@@ -4,6 +4,7 @@ import { Pivot, PivotItem } from "office-ui-fabric-react/lib/Pivot";
 import User from "./User/index";
 import CodeEditor from './Code/index'
 import SelectCode from './Select/index'
+import Repl from './Repl/Repl'
 import HomeHelpPanel from "./HelpPanels/UserHelp";
 import CreateHelpPanel from "./HelpPanels/CreateHelp";
 import firebase from "firebase";
@@ -63,16 +64,16 @@ export default function PivotMenu() {
         </PivotItem>
         <PivotItem
           itemKey="3"
-          headerText="Notebook"
+          headerText="repl"
           headerButtonProps={{
             disabled: !loggedIn
           }}
         >
           <div className="pivot-head">
-            <Label>Notebook</Label>
+            <Label>Repl</Label>
           </div>
           <div>
-            
+            <Repl />
           </div>
         </PivotItem>
       </Pivot>
