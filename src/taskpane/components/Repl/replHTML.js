@@ -1,4 +1,6 @@
-<!doctype html>
+export function generateReplHTML(input_data) {
+  return `
+  <!doctype html>
 <html>
   <head>
   <meta charset="UTF-8">
@@ -26,7 +28,7 @@
       });
       let namespace = pyodide.globals.get("dict")();
       pyodide.runPython(
-        `
+        '
           import sys
           from pyodide import to_js
           from pyodide.console import PyodideConsole, repr_shorten, BANNER
@@ -37,7 +39,7 @@
             return to_js([await fut], depth=1)
           def clear_console():
             pyconsole.buffer = []
-      `,
+      ',
         namespace
       );
       let repr_shorten = namespace.get("repr_shorten");
@@ -74,7 +76,7 @@
             case "complete":
               break;
             default:
-              throw new Error(`Unexpected type ${ty}`);
+              throw new Error(Unexpected type);
           }
 
           // In Javascript, await automatically also awaits any results of
@@ -148,7 +150,7 @@
       };
     }
     window.console_ready =  main();
-    //window.input_data = [1,2,3]
+    window.input_data = ${input_data}
     
   </script>
 
@@ -165,3 +167,6 @@
           <span data-text="Welcome&nbsp;to&nbsp;the&nbsp;Pyodide&nbsp;terminal&nbsp;emulator&nbsp;🐍">Welcome&nbsp;to&nbsp;the&nbsp;Pyodide&nbsp;terminal&nbsp;emulator&nbsp;🐍</span>
         </div>
         <div style="width: 100%;"><span data-text="Python&nbsp;3.9.5&nbsp;(default,&nbsp;Aug&nbsp;14&nbsp;2021&nbsp;20:11:33)&nbsp;on&nbsp;WebAssembly&nbsp;VM">Python&nbsp;3.9.5&nbsp;(default,&nbsp;Aug&nbsp;14&nbsp;2021&nbsp;20:11:33)&nbsp;on&nbsp;WebAssembly&nbsp;VM</span></div><div class="cmd-end-line" style="width: 100%;"><span data-text="Type&nbsp;" help",&nbsp;"copyright",&nbsp;"credits"&nbsp;or&nbsp;"license"&nbsp;for&nbsp;more&nbsp;information."="">Type&nbsp;"help",&nbsp;"copyright",&nbsp;"credits"&nbsp;or&nbsp;"license"&nbsp;for&nbsp;more&nbsp;information.</span></div></div></div><div class="cmd" style="width: 100%; top: 0px;"><div class="cmd-wrapper" style=""><span class="cmd-prompt" style="margin-left: 0px; visibility: visible;"><span data-text=">>>&nbsp;"><span style="width: 4ch;">&gt;&gt;&gt;&nbsp;</span></span></span><div class="cmd-cursor-line" role="presentation" aria-hidden="true"><span></span><span class="cmd-cursor" style=""><span data-text="" class="end"><span>&nbsp;<span></span></span></span></span><span></span></div></div><textarea autocapitalize="off" spellcheck="false" tabindex="1" class="cmd-clipboard" data-cmd-prompt=">>>&nbsp;" style="top: 0px;"></textarea></div></div><div class="terminal-font">&nbsp;</div><div class="terminal-fill"></div><div class="terminal-scroll-marker"><div style="height: 20px;"></div></div></div></body></html>
+  `
+  return 
+}

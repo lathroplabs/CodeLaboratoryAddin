@@ -49,6 +49,7 @@ export default function PivotMenu() {
             <CreateHelpPanel />
           </div>
           <CodeEditor />
+          <Repl />
         </PivotItem>
         <PivotItem
           itemKey="2"
@@ -65,6 +66,7 @@ export default function PivotMenu() {
         <PivotItem
           itemKey="3"
           headerText="repl"
+          headersOnly="true"
           headerButtonProps={{
             disabled: !loggedIn
           }}

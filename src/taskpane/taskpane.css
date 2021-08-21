@@ -108,13 +108,3 @@ div.centered {
 h1 {
   text-align: center;
 }
-
-.terminal {
-  --size: 1.5;
-  --color: rgba(255, 255, 255, 0.8);
-  --char-width: 10.8125; 
-  --terminal-height: 365; 
-  --terminal-x: 10; 
-  --terminal-y: 80; 
-  --terminal-scroll: 0
-}
